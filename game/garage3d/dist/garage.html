@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="./garage/favicon.png"><title>Mining Gangs | Garage</title>
+  <style>
+    html,body{margin:0;background:#080d11}body.loading-game{overflow:hidden}body.loading-game>:not(#loading):not(script){visibility:hidden}
+    #loading{box-sizing:border-box;position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;padding:24px;background:#080d11;color:#edeae0;font-family:Inter,"Segoe UI",Arial,sans-serif;text-align:center}
+    #loading[hidden]{display:none}#loading .loading-content{width:min(380px,100%)}#loading .loading-brand{margin:0 0 44px;font-size:clamp(28px,5vw,42px);font-weight:850;letter-spacing:-1.4px;white-space:nowrap}#loading .loading-brand b{color:#e6ba63}
+    #loading .loading-meter{height:3px;background:#263035;overflow:hidden}#loading .loading-fill{display:block;width:0;height:100%;background:#e6ba63}
+    #loading .loading-percent{display:block;margin-top:18px;font-size:15px;font-variant-numeric:tabular-nums;letter-spacing:1px;color:#e6c68b}#loading .loading-status{min-height:20px;margin:12px 0 0;font-size:12px;line-height:1.6;color:#9aa7aa}
+    #loading .loading-retry{margin-top:22px;border:1px solid #8a744b;border-radius:4px;padding:11px 24px;background:#182025;color:#f0d9af;font:inherit;cursor:pointer}#loading .loading-retry[hidden]{display:none}#loading[data-state=error] .loading-meter,#loading[data-state=error] .loading-percent{display:none}
+  </style>
+  <script type="module" crossorigin src="./assets/garage-CYY4SUZm.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/greasedLineBaseMesh-eo2IcIiT.js">
+  <link rel="modulepreload" crossorigin href="./assets/hero-asset-gq8uSJ8P.js">
+  <link rel="stylesheet" crossorigin href="./assets/garage-DMemv4bo.css">
+</head>
+<body class="loading-game">
+  <div id="loading" data-state="loading" aria-label="Загрузка Mining Gangs" aria-busy="true">
+    <div class="loading-content">
+      <h1 class="loading-brand">MINING <b>GANGS</b></h1>
+      <div class="loading-meter" role="progressbar" aria-label="Загрузка игры" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="loading-fill"></span></div>
+      <span class="loading-percent" aria-hidden="true">0%</span>
+      <p class="loading-status" role="status" aria-live="polite">Загрузка…</p>
+      <button class="loading-retry" hidden type="button" onclick="location.reload()">Попробовать снова</button>
+    </div>
+  </div>
+  <script>
+    window.__reportGarageBoot=(reason,details={})=>{
+      if(!['127.0.0.1','localhost'].includes(location.hostname))return;
+      const data={reason:String(reason),stage:window.garageBootStage||'module',percent:document.querySelector('.loading-percent')?.textContent,...details};
+      console.debug('Garage boot',data);
+      if(!['ready','start','warmup'].includes(reason)){let out=document.getElementById('boot-error-detail');if(!out){out=document.createElement('p');out.id='boot-error-detail';out.style.cssText='font:12px monospace;color:#e6ba63;overflow-wrap:anywhere';document.querySelector('.loading-content').append(out);}out.textContent=data.reason+' / '+data.stage+' / '+data.percent;}
+    };
+    window.__reportGarageBoot('start');
+    window.addEventListener('error',e=>window.__reportGarageBoot(e.message||'Resource failed',{file:e.filename||e.target?.src||'',line:e.lineno}));
+    window.addEventListener('unhandledrejection',e=>window.__reportGarageBoot(e.reason?.message||String(e.reason)));
+    // This fallback is already available if the main module cannot even load.
+    (()=>{
+      const fail=()=>{const screen=document.getElementById('loading');if(screen.hidden||screen.dataset.state==='ready')return;dispose();screen.dataset.state='error';screen.setAttribute('aria-busy','false');screen.querySelector('.loading-status').textContent='Не удалось загрузить игру. Попробуйте ещё раз.';screen.querySelector('.loading-retry').hidden=false;};
+      const error=event=>{if(event.target===window||event.target?.tagName==='SCRIPT')fail();};
+      const timer=setTimeout(fail,180000);
+      window.addEventListener('error',error,true);window.addEventListener('unhandledrejection',fail);
+      const dispose=()=>{clearTimeout(timer);window.removeEventListener('error',error,true);window.removeEventListener('unhandledrejection',fail);window.removeEventListener('pagehide',dispose);delete window.__garageBootFallback;};
+      window.addEventListener('pagehide',dispose);window.__garageBootFallback={dispose};
+    })();
+  </script>
+  <header class="bar">
+    <a class="brand" href="/garage.html">MINING <b>GANGS</b><small>GARAGE / 01</small></a>
+    <div class="modes" role="group" aria-label="Вид сцены">
+      <button id="room" aria-pressed="true">Оригинал</button><button id="workshop" aria-pressed="false">Гараж 3D</button><button id="detail" aria-pressed="false">ASIC</button>
+    </div>
+    <div class="profile-tools"><a class="game-link" href="../../map.html?garage3d=1" title="Открыть игру со всеми кнопками и своим гаражом">Игра · все кнопки</a><button id="to-city" disabled>В город</button><a class="hero-link" href="./character.html">My character</a><select id="graphics-quality" aria-label="Graphics quality" title="Graphics quality — reloads the scene"><option value="low">LOW · Слабый ПК</option><option value="high">HIGH · Обычный ПК</option></select></div>
+  </header>
+  <main id="viewport">
+    <div id="stage"><img id="backdrop" src="./garage/bg_garage_hq_v1.webp" alt="Гараж Mining Gangs"><div id="legacy" hidden></div></div>
+    <canvas id="rack-canvas" tabindex="0" aria-label="Анимированные объёмные ASIC"></canvas>
+    <a id="enter-raid" class="raid-cta" href="../../../play.html" target="_top" aria-label="Enter raid" title="Enter raid">
+      <svg class="raid-cta-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>
+      <span>RAID</span>
+      <svg class="raid-cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+    </a>
+    <div id="fly-pad" hidden aria-label="Перемещение камеры">
+      <button data-fly="forward" class="icon" aria-label="Вперёд" title="Вперёд"><i data-lucide="arrow-up"></i></button>
+      <button data-fly="up" class="icon" aria-label="Выше" title="Выше"><i data-lucide="chevrons-up"></i></button>
+      <button data-fly="left" class="icon" aria-label="Влево" title="Влево"><i data-lucide="arrow-left"></i></button>
+      <button data-fly="back" class="icon" aria-label="Назад" title="Назад"><i data-lucide="arrow-down"></i></button>
+      <button data-fly="right" class="icon" aria-label="Вправо" title="Вправо"><i data-lucide="arrow-right"></i></button>
+      <button data-fly="down" class="icon" aria-label="Ниже" title="Ниже"><i data-lucide="chevrons-down"></i></button>
+    </div>
+    <aside class="nameplate"><span>СТОЙКА 01</span><h1>Мой гараж</h1><p>6 ASIC <i></i> воздушное охлаждение</p></aside>
+    <div class="selection" hidden><span>MINING GANGS / HARDWARE</span><h2>PRO / DUAL FAN</h2><p>Алюминиевый корпус · двойное охлаждение</p></div>
+    <nav class="rig-selector" hidden aria-label="Модель ASIC">
+      <button data-rig="rig1"><b>01</b><span>6 TH</span></button><button data-rig="rig2"><b>02</b><span>15 TH</span></button>
+      <button data-rig="rig3"><b>03</b><span>28 TH</span></button><button data-rig="rig4"><b>04</b><span>50 TH</span></button>
+      <button data-rig="rig5"><b>05</b><span>88 TH</span></button><button data-rig="rig6"><b>06</b><span>150 TH</span></button>
+      <button data-rig="rig7"><b>07</b><span>245 TH</span></button>
+    </nav>
+  </main>
+  <footer class="toolbar">
+    <label class="compare"><input type="checkbox" id="compare"> Старые спрайты</label>
+    <div class="tools">
+      <button id="play" class="icon" title="Остановить вентиляторы" aria-label="Остановить вентиляторы"><i data-lucide="pause"></i></button>
+      <button id="zoom" class="icon" title="Приблизить стойку" aria-label="Приблизить стойку"><i data-lucide="scan-search"></i></button>
+      <button id="open-crafting" class="craft-toolbar-button" title="Собрать и установить предмет" disabled>Крафт</button>
+      <button id="open-profile" class="profile-toolbar-button" title="Снарядить героя" disabled>Профиль</button>
+      <button id="bench-view" class="icon" title="Верстак крупным планом" aria-label="Верстак крупным планом"><i data-lucide="wrench"></i></button>
+      <button id="gate-view" class="icon" title="Ворота крупным планом" aria-label="Ворота крупным планом"><i data-lucide="door-closed"></i></button>
+      <button id="vent-view" class="icon" title="Вентиляция крупным планом" aria-label="Вентиляция крупным планом"><i data-lucide="fan"></i></button>
+      <button id="yard-view" class="icon" title="Двор и въезд" aria-label="Двор и въезд"><i data-lucide="fence"></i></button>
+      <button id="campfire-view" class="icon" title="Костёр и патруль" aria-label="Костёр и патруль"><i data-lucide="flame"></i></button>
+      <button id="reset" class="icon" title="Исходный ракурс" aria-label="Исходный ракурс"><i data-lucide="rotate-ccw"></i></button>
+      <button id="free-camera" class="icon" title="Свободная камера" aria-label="Свободная камера" aria-pressed="false" disabled><i data-lucide="navigation"></i></button>
+    </div>
+    <label class="light"><i data-lucide="sun"></i><input aria-label="Рабочий свет" id="light" type="range" min="0.4" max="1.8" step="0.05" value="1"></label>
+    <button id="export" class="export" disabled><i data-lucide="download"></i><span>GLB</span></button>
+  </footer>
+  <div id="message" role="status"></div>
+
+
+</body></html>
